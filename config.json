@@ -1,7 +1,87 @@
 {
-  "need_record": 0,
-  "show_fps": 10,
-  "fourcc": "DIVX",
-  "cameras": {
-  }
+  "schema_version": 2,
+  "output_dir": "video",
+  "record": true,
+  "preview": false,
+  "preview_fps": 10,
+  "codec": "FFV1",
+  "container": "avi",
+  "segment_seconds": 30,
+  "queue_frames": 64,
+  "queue_megabytes": 256,
+  "duration_seconds": 5,
+  "frame_limit": 0,
+  "no_frame_timeout_seconds": 10,
+  "cameras": [
+    {
+      "backend": "simulated",
+      "serial": "sim-01",
+      "name": "cam01",
+      "pixel_format": "Mono8",
+      "width": 320,
+      "height": 240,
+      "fps": 30,
+      "exposure_us": 0,
+      "trigger": "off",
+      "trigger_source": "Line0",
+      "trigger_activation": "RisingEdge",
+      "throughput_limit": 0
+    },
+    {
+      "backend": "simulated",
+      "serial": "sim-02",
+      "name": "cam02",
+      "pixel_format": "Mono8",
+      "width": 320,
+      "height": 240,
+      "fps": 30,
+      "exposure_us": 0,
+      "trigger": "off",
+      "trigger_source": "Line0",
+      "trigger_activation": "RisingEdge",
+      "throughput_limit": 0
+    },
+    {
+      "backend": "simulated",
+      "serial": "sim-03",
+      "name": "cam03",
+      "pixel_format": "Mono8",
+      "width": 320,
+      "height": 240,
+      "fps": 30,
+      "exposure_us": 0,
+      "trigger": "off",
+      "trigger_source": "Line0",
+      "trigger_activation": "RisingEdge",
+      "throughput_limit": 0
+    },
+    {
+      "backend": "simulated",
+      "serial": "sim-04",
+      "name": "cam04",
+      "pixel_format": "Mono8",
+      "width": 320,
+      "height": 240,
+      "fps": 30,
+      "exposure_us": 0,
+      "trigger": "off",
+      "trigger_source": "Line0",
+      "trigger_activation": "RisingEdge",
+      "throughput_limit": 0
+    },
+    {
+      "backend": "simulated",
+      "serial": "sim-05",
+      "name": "cam05",
+      "pixel_format": "Mono8",
+      "width": 320,
+      "height": 240,
+      "fps": 30,
+      "exposure_us": 0,
+      "trigger": "off",
+      "trigger_source": "Line0",
+      "trigger_activation": "RisingEdge",
+      "throughput_limit": 0
+    }
+  ]
 }

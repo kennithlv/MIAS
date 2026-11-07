@@ -1,6 +1,19 @@
-Edit CMakeLists.txt, set include directories and libarary directories
+Linux / Ubuntu quick start
+==========================
 
-cd build
-cmake -G "Visual Studio 15 Win64" ..
+sudo apt update
+sudo apt install build-essential cmake libopencv-dev nlohmann-json3-dev python3-opencv
 
-Build "Release" in Visual Studio
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j
+./build/MIAS --simulate 5 --duration 5 --output video
+ctest --test-dir build --output-on-failure
+
+For real cameras, install the manufacturer's Linux SDK and enable the relevant backend:
+
+cmake -S . -B build-camera -DCMAKE_BUILD_TYPE=Release -DMIAS_WITH_HIKROBOT=ON -DMIAS_WITH_FLIR=ON
+cmake --build build-camera -j
+./build-camera/MIAS --list
+
+See README.md and docs/linux.md for configuration, recording and verification.
+The original Windows instructions and source are preserved under legacy/.

@@ -1,0 +1,47 @@
+name: Linux build and video recording
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: linux-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  simulator:
+    name: ${{ matrix.os }} (preview=${{ matrix.preview }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            preview: "OFF"
+          - os: ubuntu-24.04
+            preview: "ON"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build and video-decoding dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build libopencv-dev nlohmann-json3-dev python3-opencv
+      - name: Configure without proprietary camera SDKs
+        run: >-
+          cmake -S . -B build-ci -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DMIAS_WITH_HIKROBOT=OFF
+          -DMIAS_WITH_FLIR=OFF
+          -DMIAS_WITH_PREVIEW=${{ matrix.preview }}
+          -DPython3_EXECUTABLE=/usr/bin/python3
+      - name: Compile
+        run: cmake --build build-ci --parallel 2
+      - name: Test recording, frame counts, timestamps, and failures
+        run: ctest --test-dir build-ci --output-on-failure
+      # Generated images test the recording pipeline, not camera SDKs or USB.
+      # Physical-camera builds and throughput require the acquisition machine.

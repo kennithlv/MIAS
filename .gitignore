@@ -1,0 +1,20 @@
+# Local builds and editor state
+/build*/
+/.venv/
+/.idea/
+/.vscode/
+.DS_Store
+__pycache__/
+*.pyc
+*.o
+*.dSYM/
+
+# Experiment data and machine-specific configuration
+/video/
+/recordings/
+/test-output/
+/config.local.json
+*.avi
+*.mkv
+*.mp4
+*.dmp
